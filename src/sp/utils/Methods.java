@@ -2,6 +2,7 @@
 package sp.utils;
 
 
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -9,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -31,6 +33,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.JLabel;
+
+import sp.main.MainWindow;
 
 
 
@@ -466,6 +472,69 @@ public class Methods {
 		
 	}//private long getMillSeconds_now(int year, int month, int date)
 
+	public static void execExternal_Get_Params(ActionListener al, JLabel lbl_Output) {
+//		public static void execExternal_Get_Params(MainWindow window) {
+		
+		String msg;
+		msg = String.format(Locale.JAPAN, "[%s : %d] execExternal_Get_Params", Thread
+				.currentThread().getStackTrace()[1].getFileName(), Thread
+				.currentThread().getStackTrace()[1].getLineNumber());
+
+		System.out.println(msg);
+
+		/*******************************
+		 * get: params value
+		 *******************************/
+		
+		
+		Process process;
+		try {
+			process = new ProcessBuilder(
+					
+					"C:\\WORKS\\Programs\\Java\\jdk1.7.0_79\\bin\\java.exe", 
+					"Test")
+//					"C:\\WORKS\\WS\\Eclipse_Luna\\J_SoundProg\\java", "Test")
+				.start();
+			
+//		"C:\\PathToExe\\MyExe.exe","param1","param2").start();
+			
+			InputStream is = process.getInputStream();
+			
+			InputStreamReader isr = new InputStreamReader(is);
+			
+			BufferedReader br = new BufferedReader(isr);
+			
+			String line;
+			
+//		System.out.printf("Output of running %s is:", Arrays.toString(args));
+			
+			String whole_text = "";
+			
+			while ((line = br.readLine()) != null) {
+				
+				System.out.println(line);
+				
+				whole_text += line;
+				
+//				MainWindow..lbl_Output.setText(whole_text);
+//				MainWindow.lblMessage.setText("This lesson covers writing layout");
+				
+			}
+			
+			lbl_Output.setText(whole_text + " !!!");
+//			MainWindow.lbl_Output.setText(whole_text);
+//			MainWindow.lbl_Output.setText(whole_text);
+//			MainWindow.lblMessage.setText(whole_text);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}//static void execExternal_Get_Params()
+	
+	
 }//public class Methods
 
 /*

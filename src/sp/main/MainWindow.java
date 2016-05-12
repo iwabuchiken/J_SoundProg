@@ -38,7 +38,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.swing.JTextField;
+
+import sp.utils.Methods;
 
 public class MainWindow {
 
@@ -58,7 +61,7 @@ public class MainWindow {
 	private JLabel lbl_Param_2;
 	private JLabel lblNewLabel;
 	private JPanel panel_3;
-	private static JLabel lbl_Output;
+	public static JLabel lbl_Output;
 
 	/**
 	 * Launch the application.
@@ -299,48 +302,51 @@ public class MainWindow {
 		btn2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-			
-				Process process;
-				try {
-					process = new ProcessBuilder(
-							
-							"C:\\WORKS\\Programs\\Java\\jdk1.7.0_79\\bin\\java.exe", 
-							"Test")
-	//					"C:\\WORKS\\WS\\Eclipse_Luna\\J_SoundProg\\java", "Test")
-						.start();
-					
-//				"C:\\PathToExe\\MyExe.exe","param1","param2").start();
-					
-					InputStream is = process.getInputStream();
-					
-					InputStreamReader isr = new InputStreamReader(is);
-					
-					BufferedReader br = new BufferedReader(isr);
-					
-					String line;
-					
-//				System.out.printf("Output of running %s is:", Arrays.toString(args));
-					
-					String whole_text = "";
-					
-					while ((line = br.readLine()) != null) {
-						
-						System.out.println(line);
-						
-						whole_text += line;
-						
-//						MainWindow..lbl_Output.setText(whole_text);
-//						MainWindow.lblMessage.setText("This lesson covers writing layout");
-						
-					}
-					
-					MainWindow.lbl_Output.setText(whole_text);
-//					MainWindow.lblMessage.setText(whole_text);
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+				// action
+				Methods.execExternal_Get_Params(this, MainWindow.lbl_Output);
+				
+//				Process process;
+//				try {
+//					process = new ProcessBuilder(
+//							
+//							"C:\\WORKS\\Programs\\Java\\jdk1.7.0_79\\bin\\java.exe", 
+//							"Test")
+//	//					"C:\\WORKS\\WS\\Eclipse_Luna\\J_SoundProg\\java", "Test")
+//						.start();
+//					
+////				"C:\\PathToExe\\MyExe.exe","param1","param2").start();
+//					
+//					InputStream is = process.getInputStream();
+//					
+//					InputStreamReader isr = new InputStreamReader(is);
+//					
+//					BufferedReader br = new BufferedReader(isr);
+//					
+//					String line;
+//					
+////				System.out.printf("Output of running %s is:", Arrays.toString(args));
+//					
+//					String whole_text = "";
+//					
+//					while ((line = br.readLine()) != null) {
+//						
+//						System.out.println(line);
+//						
+//						whole_text += line;
+//						
+////						MainWindow..lbl_Output.setText(whole_text);
+////						MainWindow.lblMessage.setText("This lesson covers writing layout");
+//						
+//					}
+//					
+//					MainWindow.lbl_Output.setText(whole_text);
+////					MainWindow.lblMessage.setText(whole_text);
+//					
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				
 			}//public void actionPerformed(ActionEvent arg0)
 			
